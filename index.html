@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú de la Final</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rojo: #C60B1E;
+    --oro: #FFB81C;
+    --verde-osc: #10302A;
+    --verde-med: #1F5C43;
+    --verde-claro: #2C7A55;
+    --granate: #7A0C1E;
+    --granate-claro: #9A1626;
+    --crema: #FAF3E7;
+    --tinta: #14120F;
+    --linea: rgba(20,18,15,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--crema);
+    color:var(--tinta);
+    font-family:'Fraunces', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:.72rem;
+    font-weight:700;
+  }
+  h1,h2,.display{
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    margin:0;
+  }
+
+  /* ---------- HERO / TICKET HEADER ---------- */
+  .hero{
+    position:relative;
+    background:
+      repeating-linear-gradient(90deg,
+        var(--rojo) 0px, var(--rojo) 46px,
+        var(--granate-claro) 46px, var(--granate-claro) 92px),
+      var(--granate);
+    color:var(--crema);
+    padding:3.4rem 1.5rem 5rem;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 120%, rgba(0,0,0,.35), transparent 60%);
+    z-index:0;
+  }
+  .pitch-arc{
+    position:absolute;
+    left:50%; top:-140px;
+    width:340px; height:340px;
+    border:2px solid rgba(255,184,28,.4);
+    border-radius:50%;
+    transform:translateX(-50%);
+    z-index:0;
+  }
+  .hero-inner{
+    position:relative; z-index:1;
+    max-width:640px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    background:rgba(250,243,231,.1);
+    border:1px solid rgba(250,243,231,.3);
+    padding:.4rem .9rem;
+    border-radius:100px;
+    margin-bottom:1.4rem;
+  }
+  .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--oro);}
+  .hero h1{
+    font-size:clamp(2.7rem, 9vw, 5rem);
+    line-height:.95;
+    color:var(--crema);
+  }
+  .hero h1 span{color:var(--oro);}
+  .hero .sub{
+    margin-top:1.1rem;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:rgba(250,243,231,.85);
+  }
+  /* ticket perforation into next section */
+  .perf{
+    position:absolute;
+    left:0; right:0; bottom:-1px;
+    height:34px;
+    background-image: radial-gradient(circle 12px, var(--crema) 11px, transparent 12px);
+    background-size:34px 34px;
+    background-position: 0 -17px;
+    z-index:2;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.content{
+    max-width:900px;
+    margin:0 auto;
+    padding:4.5rem 1.5rem 1rem;
+  }
+  .section-head{
+    text-align:center;
+    margin-bottom:2.6rem;
+  }
+  .section-head .eyebrow{color:var(--rojo);}
+  .section-head h2{
+    font-size:clamp(2rem, 6vw, 2.8rem);
+    margin-top:.5rem;
+    color:var(--tinta);
+  }
+  .section-head p{
+    font-style:italic;
+    color:#5b5348;
+    max-width:38ch;
+    margin:.7rem auto 0;
+  }
+
+  /* ---------- LINEUP GRID ---------- */
+  .lineup{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1.1rem;
+  }
+  .lineup .row-solo{grid-column:1 / -1; display:flex; justify-content:center;}
+  .lineup .row-solo .card{max-width:340px; width:100%;}
+
+  .card{
+    position:relative;
+    background:#fff;
+    border-radius:16px;
+    padding:1.5rem 1.4rem 1.3rem;
+    box-shadow:0 1px 0 var(--linea), 0 14px 30px -18px rgba(20,18,15,.35);
+    border:1px solid var(--linea);
+  }
+  .card::before, .card::after{
+    content:"";
+    position:absolute;
+    top:50%; transform:translateY(-50%);
+    width:20px; height:20px;
+    background:var(--crema);
+    border-radius:50%;
+    border:1px solid var(--linea);
+  }
+  .card::before{left:-11px;}
+  .card::after{right:-11px;}
+  .card-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:.6rem;
+  }
+  .num{
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:1.6rem;
+    color:var(--rojo);
+    line-height:1;
+  }
+  .pos{
+    font-family:'Space Mono', monospace;
+    font-size:.62rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#9a8f7c;
+    text-align:right;
+    padding-top:.2rem;
+  }
+  .card h3{
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    font-size:1.35rem;
+    margin:.5rem 0 .15rem;
+    color:var(--tinta);
+    line-height:1.05;
+  }
+  .card .real-dish{
+    font-family:'Space Mono', monospace;
+    font-size:.7rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--verde-med);
+    margin-bottom:.6rem;
+  }
+  .card .desc{
+    font-style:italic;
+    color:#5b5348;
+    font-size:.92rem;
+    line-height:1.4;
+  }
+  .barcode{
+    margin-top:1rem;
+    height:16px;
+    background: repeating-linear-gradient(90deg,
+      var(--tinta) 0 2px, transparent 2px 5px,
+      var(--tinta) 5px 6px, transparent 6px 11px,
+      var(--tinta) 11px 14px, transparent 14px 17px);
+    opacity:.18;
+  }
+
+  /* ---------- COPA / POSTRE ---------- */
+  .copa-wrap{
+    background:var(--granate);
+    margin-top:5rem;
+    padding:4.5rem 1.5rem 4.5rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .copa-wrap .section-head .eyebrow{color:var(--oro);}
+  .copa-wrap .section-head h2{color:var(--crema);}
+  .copa-wrap .section-head p{color:rgba(250,243,231,.75);}
+  .trophy-card{
+    max-width:400px;
+    margin:0 auto;
+    text-align:center;
+    background:rgba(250,243,231,.06);
+    border:1px solid rgba(255,184,28,.35);
+    border-radius:18px;
+    padding:2.4rem 1.8rem 2rem;
+  }
+  .trophy-svg{width:56px; height:56px; margin:0 auto 1rem; display:block;}
+  .trophy-card h3{
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    color:var(--oro);
+    font-size:1.9rem;
+    margin:0 0 .5rem;
+    line-height:1;
+  }
+  .trophy-card .desc{
+    color:rgba(250,243,231,.85);
+    font-style:italic;
+    font-size:1rem;
+  }
+  .ribbon-line{
+    width:60px; height:2px; background:var(--oro);
+    margin:1.1rem auto;
+    opacity:.6;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    text-align:center;
+    padding:3.4rem 1.5rem 3rem;
+    color:#8a8071;
+  }
+  footer .flagbar{
+    width:64px; height:5px; margin:0 auto 1.1rem;
+    background: linear-gradient(90deg, var(--rojo) 33%, var(--oro) 33% 66%, var(--rojo) 66%);
+    border-radius:4px;
+  }
+  footer p{font-family:'Fraunces', serif; font-style:italic; font-size:1rem; margin:0;}
+
+  @media (max-width:640px){
+    .lineup{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="pitch-arc" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="badge"><span class="dot"></span> Gran final · España</div>
+      <h1>Menú <span>de la</span><br>Final</h1>
+      <p class="sub">Sin primer plato — hoy vamos directos al once inicial.</p>
+    </div>
+    <div class="perf" aria-hidden="true"></div>
+  </header>
+
+  <section class="content">
+    <div class="section-head">
+      <div class="eyebrow">Entrantes</div>
+      <h2>Alineación Titular</h2>
+      <p>Formación 1&#8211;2&#8211;2, pensada para picar sin parar hasta el pitido final.</p>
+    </div>
+
+    <div class="lineup">
+      <div class="row-solo">
+        <div class="card">
+          <div class="card-top"><span class="num">04</span><span class="pos">Defensa</span></div>
+          <h3>La Defensa de Ibéricos</h3>
+          <div class="real-dish">Tabla de embutidos y queso</div>
+          <p class="desc">La línea de fondo que no falla. Sólida, variada, imposible de superar.</p>
+          <div class="barcode"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="num">08</span><span class="pos">Mediocentro</span></div>
+        <h3>Tiki&#8209;Taka de Patatas</h3>
+        <div class="real-dish">Tortilla de patatas</div>
+        <p class="desc">Toque corto, paciencia y control total del centro de la mesa.</p>
+        <div class="barcode"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="num">06</span><span class="pos">Base</span></div>
+        <h3>Pan del Míster</h3>
+        <div class="real-dish">Pan con tomate</div>
+        <p class="desc">El fundamento silencioso sobre el que se construye todo lo demás.</p>
+        <div class="barcode"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="num">10</span><span class="pos">Enganche</span></div>
+        <h3>Gol de Croqueta</h3>
+        <div class="real-dish">Croquetas caseras</div>
+        <p class="desc">El regate imposible de defender. Crujiente por fuera, gol asegurado por dentro.</p>
+        <div class="barcode"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="num">07</span><span class="pos">Extremo</span></div>
+        <h3>Bravas de la Furia Roja</h3>
+        <div class="real-dish">Patatas bravas picantes</div>
+        <p class="desc">Desborda por fuera, pica por dentro. La velocidad que descoloca a cualquiera.</p>
+        <div class="barcode"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="copa-wrap">
+    <div class="section-head">
+      <div class="eyebrow">Postre</div>
+      <h2>La Copa</h2>
+      <p>El remate final. El que se levanta al terminar el partido.</p>
+    </div>
+    <div class="trophy-card">
+      <svg class="trophy-svg" viewBox="0 0 24 24" fill="none" stroke="#FFB81C" stroke-width="1.4">
+        <path d="M6 3h12v3a6 6 0 0 1-12 0V3z"/>
+        <path d="M6 4H3a3 3 0 0 0 3 4"/>
+        <path d="M18 4h3a3 3 0 0 1-3 4"/>
+        <path d="M12 12v4"/>
+        <path d="M8 20h8"/>
+        <path d="M9 16h6l1 4H8l1-4z"/>
+      </svg>
+      <h3>Torrijas de la Roja</h3>
+      <div class="ribbon-line"></div>
+      <p class="desc">El gol en el descuento que no falla.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="flagbar"></div>
+    <p>Hecho con cariño para ver la final juntos.</p>
+  </footer>
+
+</body>
+</html>
